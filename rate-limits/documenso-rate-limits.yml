@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Documenso
+providerId: documenso
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- E-Signature
+- Documents
+- Signing
+- Open Source
+- DocuSign Alternative
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Documenso public API enforces per-token rate limits on requests. Limits
+  apply per API token and vary by plan; the Free tier additionally caps usage
+  at 5 documents per month with up to 10 recipients per document. Self-hosted
+  deployments can configure their own limits. Specific per-endpoint request
+  ceilings are not reconciled in this artifact.
+notes: >-
+  Verify current per-token request limits in the Documenso API documentation
+  (Rate Limits section) on reconciliation. Self-hosted instances may set
+  different limits via configuration.
+sources:
+- https://docs.documenso.com/developers/public-api
+- https://documenso.com/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests Per Token
+  scope: token
+  metric: requests
+  limit: see provider documentation
+  notes: Per-API-token request rate limit; varies by plan.
+- name: Documents Per Month (Free tier)
+  scope: account
+  metric: documents
+  limit: 5
+  notes: Free cloud tier monthly document cap; unlimited on paid tiers and self-hosted.
+- name: Recipients Per Document (Free tier)
+  scope: document
+  metric: recipients
+  limit: 10
+  notes: Free cloud tier per-document recipient cap.
+- name: Self-Hosted Limits
+  scope: account
+  metric: requests
+  limit: operator-configured
+  notes: Self-hosted deployments define their own rate limits; no vendor-imposed ceiling.
+policies:
+- name: Tiered Limits
+  description: Quotas and API access expand from Free to Individual, Teams, and Platform plans; self-hosting removes vendor caps.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on HTTP 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

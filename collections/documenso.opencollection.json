@@ -1,0 +1,281 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Documenso Public API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{apiToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/documents"
+          },
+          "docs": "Returns a paginated list of documents visible to the API token."
+        },
+        {
+          "info": {
+            "name": "Upload a new document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"title\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"role\": \"SIGNER\"\n    }\n  ]\n}"
+            }
+          },
+          "docs": "Creates a new draft document and returns a presigned upload URL for the PDF."
+        },
+        {
+          "info": {
+            "name": "Get a single document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/documents/{id}"
+          },
+          "docs": "Retrieve a single document by id."
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/documents/{id}"
+          },
+          "docs": "Delete a document by id."
+        },
+        {
+          "info": {
+            "name": "Download a signed document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/download"
+          },
+          "docs": "Returns a presigned URL to download the signed PDF."
+        },
+        {
+          "info": {
+            "name": "Send a document for signing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/send",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"sendEmail\": true\n}"
+            }
+          },
+          "docs": "Distributes the document to its recipients for signature."
+        },
+        {
+          "info": {
+            "name": "Re-send a document for signing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/resend",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"recipients\": [0]\n}"
+            }
+          },
+          "docs": "Re-sends the signing request to selected recipients."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/recipients",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"role\": \"SIGNER\"\n}"
+            }
+          },
+          "docs": "Create a recipient for a document."
+        },
+        {
+          "info": {
+            "name": "Update a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/recipients/{recipientId}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"role\": \"SIGNER\"\n}"
+            }
+          },
+          "docs": "Update a recipient on a document."
+        },
+        {
+          "info": {
+            "name": "Delete a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/recipients/{recipientId}"
+          },
+          "docs": "Delete a recipient from a document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/fields",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"recipientId\": 0,\n  \"type\": \"SIGNATURE\",\n  \"pageNumber\": 1,\n  \"pageX\": 0,\n  \"pageY\": 0,\n  \"pageWidth\": 0,\n  \"pageHeight\": 0\n}"
+            }
+          },
+          "docs": "Create a field for a document, bound to a recipient and positioned by page and percentage coordinates."
+        },
+        {
+          "info": {
+            "name": "Update a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/fields/{fieldId}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"recipientId\": 0,\n  \"type\": \"SIGNATURE\",\n  \"pageNumber\": 1,\n  \"pageX\": 0,\n  \"pageY\": 0,\n  \"pageWidth\": 0,\n  \"pageHeight\": 0\n}"
+            }
+          },
+          "docs": "Update a field on a document."
+        },
+        {
+          "info": {
+            "name": "Delete a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/documents/{id}/fields/{fieldId}"
+          },
+          "docs": "Delete a field from a document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/templates"
+          },
+          "docs": "Returns a paginated list of templates."
+        },
+        {
+          "info": {
+            "name": "Create a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/templates",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"title\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Creates a new template and returns a presigned upload URL for its PDF."
+        },
+        {
+          "info": {
+            "name": "Get a single template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/templates/{id}"
+          },
+          "docs": "Retrieve a single template by id."
+        },
+        {
+          "info": {
+            "name": "Delete a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/templates/{id}"
+          },
+          "docs": "Delete a template by id."
+        },
+        {
+          "info": {
+            "name": "Generate a document from a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/templates/{templateId}/generate-document",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"title\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"role\": \"SIGNER\"\n    }\n  ]\n}"
+            }
+          },
+          "docs": "Creates a new document from a template, optionally overriding title, recipients, and meta options."
+        }
+      ]
+    }
+  ]
+}

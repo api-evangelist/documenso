@@ -1,0 +1,89 @@
+aid: documenso
+name: Documenso
+review:
+  question: Does Documenso expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Documenso's only event-driven surface is outbound HTTP webhooks, not a
+    streaming transport. Per API Evangelist scope, webhooks are modeled as
+    properties on the apis.yml Webhooks API entry rather than as an AsyncAPI
+    document. No AsyncAPI spec was created because there is no SSE or WebSocket
+    streaming channel to model - delivery is one POST per event to a
+    subscriber URL.
+findings:
+  summary: |
+    Documenso does not publish a documented public WebSocket API. The public
+    platform exposes a REST (HTTPS) API (v1, with a v2 in beta) under
+    https://app.documenso.com/api/v1 for documents, recipients, fields, and
+    templates. Asynchronous event delivery is provided via outbound webhooks:
+    Documenso POSTs a JSON event payload to a configured endpoint for document
+    lifecycle and template events. Webhook authenticity is verified with a
+    shared secret sent in the X-Documenso-Secret header. No realtime,
+    bidirectional, or SSE streaming endpoint (ws:// or wss://) is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.documenso.com/api/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP POST callbacks to a subscriber URL for document and template events; secret in X-Documenso-Secret header. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Documenso's public API reference, webhooks docs, or developer guides as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://app.documenso.com/api/v1/documents
+    - POST   https://app.documenso.com/api/v1/documents
+    - GET    https://app.documenso.com/api/v1/documents/{id}
+    - DELETE https://app.documenso.com/api/v1/documents/{id}
+    - GET    https://app.documenso.com/api/v1/documents/{id}/download
+    - POST   https://app.documenso.com/api/v1/documents/{id}/send
+    - POST   https://app.documenso.com/api/v1/documents/{id}/resend
+    - POST   https://app.documenso.com/api/v1/documents/{id}/recipients
+    - PATCH  https://app.documenso.com/api/v1/documents/{id}/recipients/{recipientId}
+    - DELETE https://app.documenso.com/api/v1/documents/{id}/recipients/{recipientId}
+    - POST   https://app.documenso.com/api/v1/documents/{id}/fields
+    - PATCH  https://app.documenso.com/api/v1/documents/{id}/fields/{fieldId}
+    - DELETE https://app.documenso.com/api/v1/documents/{id}/fields/{fieldId}
+    - GET    https://app.documenso.com/api/v1/templates
+    - POST   https://app.documenso.com/api/v1/templates
+    - GET    https://app.documenso.com/api/v1/templates/{id}
+    - DELETE https://app.documenso.com/api/v1/templates/{id}
+    - POST   https://app.documenso.com/api/v1/templates/{templateId}/generate-document
+  webhookEventsConfirmed:
+    - DOCUMENT_CREATED
+    - DOCUMENT_SENT
+    - DOCUMENT_OPENED
+    - DOCUMENT_SIGNED
+    - DOCUMENT_COMPLETED
+    - DOCUMENT_REJECTED
+    - DOCUMENT_CANCELLED
+sources:
+  - url: https://docs.documenso.com/developers/public-api
+    type: Documentation
+    note: Public API overview; REST base URL and resource categories (documents, recipients, fields, templates). No WebSocket mentioned.
+  - url: https://docs.documenso.com/developers/public-api/reference
+    type: APIReference
+    note: All documented endpoints are HTTPS REST.
+  - url: https://github.com/documenso/documenso/blob/main/packages/api/v1/contract.ts
+    type: SourceCode
+    note: ts-rest contract enumerating the v1 REST endpoints implemented in the codebase.
+  - url: https://docs.documenso.com/docs/developers/webhooks
+    type: Documentation
+    note: Webhook events delivered as outbound HTTP POST callbacks, not WebSocket; secret in X-Documenso-Secret header.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE streaming surface exists. Event delivery is via
+    outbound webhooks, which are represented as a Webhooks API entry with
+    Documentation properties in apis.yml. No AsyncAPI document was authored
+    because there is no streaming channel to model.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

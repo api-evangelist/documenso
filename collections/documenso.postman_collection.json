@@ -1,0 +1,380 @@
+{
+  "info": {
+    "_postman_id": "d0c0d0c0-1a2b-4c3d-8e9f-0a1b2c3d4e5f",
+    "name": "Documenso Public API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API (v1) for Documenso, the open-source DocuSign alternative.\n\nContact Support:\n Name: Documenso Support\n Email: support@documenso.com",
+      "type": "text/plain"
+    }
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{apiToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.documenso.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "item": [
+    {
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Get all documents",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/documents",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload a new document",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"role\": \"SIGNER\"\n    }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a single document",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a document",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download a signed document",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/download",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "download"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send a document for signing",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sendEmail\": true\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/send",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "send"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Re-send a document for signing",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [0]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/resend",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "resend"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Recipients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Create a recipient",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"role\": \"SIGNER\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/recipients",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "recipients"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a recipient",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"role\": \"SIGNER\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/recipients/:recipientId",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "recipients", ":recipientId"],
+              "variable": [
+                { "key": "id", "value": "0" },
+                { "key": "recipientId", "value": "0" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a recipient",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/recipients/:recipientId",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "recipients", ":recipientId"],
+              "variable": [
+                { "key": "id", "value": "0" },
+                { "key": "recipientId", "value": "0" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Fields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Create a field",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipientId\": 0,\n  \"type\": \"SIGNATURE\",\n  \"pageNumber\": 1,\n  \"pageX\": 0,\n  \"pageY\": 0,\n  \"pageWidth\": 0,\n  \"pageHeight\": 0\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/fields",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "fields"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a field",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipientId\": 0,\n  \"type\": \"SIGNATURE\",\n  \"pageNumber\": 1,\n  \"pageX\": 0,\n  \"pageY\": 0,\n  \"pageWidth\": 0,\n  \"pageHeight\": 0\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/fields/:fieldId",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "fields", ":fieldId"],
+              "variable": [
+                { "key": "id", "value": "0" },
+                { "key": "fieldId", "value": "0" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a field",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/fields/:fieldId",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":id", "fields", ":fieldId"],
+              "variable": [
+                { "key": "id", "value": "0" },
+                { "key": "fieldId", "value": "0" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Get all templates",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/templates",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a template",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/templates",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a single template",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/templates/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates", ":id"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a template",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/templates/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates", ":id"],
+              "variable": [{ "key": "id", "value": "0" }]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate a document from a template",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"role\": \"SIGNER\"\n    }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/templates/:templateId/generate-document",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates", ":templateId", "generate-document"],
+              "variable": [{ "key": "templateId", "value": "0" }]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

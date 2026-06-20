@@ -1,0 +1,200 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Documenso
+providerId: documenso
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- E-Signature
+- Documents
+- Signing
+- Open Source
+- DocuSign Alternative
+- Plans
+description: >-
+  Documenso offers a self-hosted open-source edition (AGPL-3.0) that you run on
+  your own infrastructure with unlimited signatures, plus a managed cloud with
+  tiered subscriptions. Cloud plans are Free, Individual, Teams, Platform, and
+  Enterprise. Public API access begins on the Individual plan ("API Access for
+  Personal Use"), expands to automation use on Teams, and is unlimited on
+  Platform. A Fair-Use-Policy applies across all tiers.
+notes: >-
+  Self-hosting is free under AGPL-3.0; there is no per-signature or per-API fee
+  for self-hosted deployments. Cloud prices below are monthly list rates with
+  discounted annual billing; verify current pricing on the Documenso pricing
+  page during reconciliation.
+sources:
+- https://documenso.com/pricing
+- https://docs.documenso.com/developers/public-api
+- https://github.com/documenso/documenso
+plans:
+- id: documenso-self-hosted
+  name: Self-Hosted (Open Source)
+  type: free
+  description: >-
+    Run Documenso on your own infrastructure under the AGPL-3.0 license with
+    unlimited documents, recipients, and signatures, including full public API
+    and webhook access. No subscription fee.
+  entries:
+  - label: Self-Hosted License
+    name: self_hosted
+    type: flat
+    metric: signatures
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (AGPL-3.0, self-hosted)
+    userMultiplied: false
+  elements:
+  - name: Documents API
+  - name: Recipients API
+  - name: Fields API
+  - name: Templates API
+  - name: Webhooks
+- id: documenso-free
+  name: Free
+  type: free
+  description: >-
+    Entry-level managed cloud tier with limited monthly document volume and no
+    credit card required.
+  entries:
+  - label: Documents
+    name: documents
+    type: usage
+    metric: documents
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  - label: Recipients Per Document
+    name: recipients_per_document
+    type: usage
+    metric: recipients
+    limit: 10
+    timeFrame: document
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Documents
+  - name: Recipients
+- id: documenso-individual
+  name: Individual
+  type: paid
+  description: >-
+    Unlimited documents for a single user, with public API access for personal
+    use and email support.
+  entries:
+  - label: Individual Subscription
+    name: individual
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $25/month ($300/year)
+    userMultiplied: false
+  - label: Documents
+    name: documents
+    type: usage
+    metric: documents
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: unlimited
+    userMultiplied: false
+  elements:
+  - name: Documents API
+  - name: Recipients API
+  - name: Fields API
+  - name: Templates API
+  - name: Webhooks
+  - name: API Access for Personal Use
+- id: documenso-teams
+  name: Teams
+  type: paid
+  description: >-
+    Team plan including 5 users (additional users billed per seat), unlimited
+    documents, embedded signing, and public API access for automation.
+  entries:
+  - label: Teams Subscription
+    name: teams
+    type: flat
+    metric: subscription
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $40/month ($480/year), includes 5 users
+    userMultiplied: false
+  - label: Additional User
+    name: additional_user
+    type: usage
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $8/month per additional user
+    userMultiplied: true
+  elements:
+  - name: Documents API
+  - name: Recipients API
+  - name: Fields API
+  - name: Templates API
+  - name: Webhooks
+  - name: API Access for Automation
+  - name: Embedded Signing
+- id: documenso-platform
+  name: Platform
+  type: paid
+  description: >-
+    High-volume plan with unlimited documents and users, unlimited API access,
+    and white-label embedded signing.
+  entries:
+  - label: Platform Subscription
+    name: platform
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $250/month ($3,000/year)
+    userMultiplied: false
+  elements:
+  - name: Unlimited API Access
+  - name: Embedded Signing (White-Label)
+  - name: Unlimited Users
+- id: documenso-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom plan for large organizations requiring advanced compliance, security,
+    and support. Contact Documenso sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Compliance
+  - name: Dedicated Support
+  - name: Custom Licensing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

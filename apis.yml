@@ -1,0 +1,147 @@
+aid: documenso
+url: https://raw.githubusercontent.com/api-evangelist/documenso/refs/heads/main/apis.yml
+name: Documenso
+kind: company
+description: Documenso is the open-source DocuSign alternative, a developer-friendly
+  e-signature platform for sending, signing, and managing documents. Its public REST
+  API lets you create and upload documents, add recipients and signature fields, send
+  documents for signing, work with reusable templates, and receive webhook events
+  across the document lifecycle. Self-hostable under AGPL.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- E-Signature
+- Documents
+- Signing
+- Open Source
+- DocuSign Alternative
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: documenso:documents
+  name: Documenso Documents API
+  tags:
+  - Documents
+  - Signing
+  - E-Signature
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.documenso.com/developers/public-api
+  baseURL: https://app.documenso.com/api/v1
+  properties:
+  - url: https://docs.documenso.com/developers/public-api
+    type: Documentation
+  - url: https://docs.documenso.com/developers/public-api/reference
+    type: APIReference
+  - url: openapi/documenso-openapi.yml
+    type: OpenAPI
+  - url: collections/documenso.postman_collection.json
+    type: PostmanCollection
+  - url: https://github.com/documenso/documenso
+    type: GitHub
+  description: Create, upload, retrieve, download, send, re-send, and delete documents.
+    Upload returns a presigned URL for the document PDF, and documents move through
+    a DRAFT, PENDING, COMPLETED, REJECTED, or CANCELLED lifecycle.
+- aid: documenso:recipients
+  name: Documenso Recipients API
+  tags:
+  - Recipients
+  - Signers
+  - Documents
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.documenso.com/developers/public-api
+  baseURL: https://app.documenso.com/api/v1
+  properties:
+  - url: https://docs.documenso.com/developers/public-api
+    type: Documentation
+  - url: https://docs.documenso.com/developers/public-api/reference
+    type: APIReference
+  - url: openapi/documenso-openapi.yml
+    type: OpenAPI
+  - url: collections/documenso.postman_collection.json
+    type: PostmanCollection
+  - url: https://github.com/documenso/documenso
+    type: GitHub
+  description: Manage the recipients of a document - create, update, and delete signers,
+    approvers, viewers, CCs, and assistants, with configurable roles and signing order.
+- aid: documenso:fields
+  name: Documenso Fields API
+  tags:
+  - Fields
+  - Signature Fields
+  - Documents
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.documenso.com/developers/public-api
+  baseURL: https://app.documenso.com/api/v1
+  properties:
+  - url: https://docs.documenso.com/developers/public-api
+    type: Documentation
+  - url: https://docs.documenso.com/developers/public-api/reference
+    type: APIReference
+  - url: openapi/documenso-openapi.yml
+    type: OpenAPI
+  - url: collections/documenso.postman_collection.json
+    type: PostmanCollection
+  - url: https://github.com/documenso/documenso
+    type: GitHub
+  description: Add and configure signature and form fields on a document - signatures,
+    initials, name, email, date, text, number, radio, checkbox, and dropdown - positioned
+    by page and percentage coordinates and bound to a recipient.
+- aid: documenso:templates
+  name: Documenso Templates API
+  tags:
+  - Templates
+  - Documents
+  - Automation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.documenso.com/developers/public-api
+  baseURL: https://app.documenso.com/api/v1
+  properties:
+  - url: https://docs.documenso.com/developers/public-api
+    type: Documentation
+  - url: https://docs.documenso.com/developers/public-api/reference
+    type: APIReference
+  - url: openapi/documenso-openapi.yml
+    type: OpenAPI
+  - url: collections/documenso.postman_collection.json
+    type: PostmanCollection
+  - url: https://github.com/documenso/documenso
+    type: GitHub
+  description: Create, retrieve, and delete reusable document templates, and generate
+    new documents from a template with overridable title, recipients, and meta options.
+- aid: documenso:webhooks
+  name: Documenso Webhooks
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.documenso.com/docs/developers/webhooks
+  baseURL: https://app.documenso.com/api/v1
+  properties:
+  - url: https://docs.documenso.com/docs/developers/webhooks
+    type: Documentation
+  - url: https://docs.documenso.com/docs/developers/webhooks/verification
+    type: Documentation
+  - url: https://github.com/documenso/documenso
+    type: GitHub
+  description: Outbound webhook events covering the full document lifecycle - created,
+    sent, opened, signed, completed, rejected, cancelled - plus template events. Payloads
+    are verified with a shared secret sent in the X-Documenso-Secret header.
+common:
+- type: GitHubOrganization
+  url: https://github.com/documenso
+- type: LinkedIn
+  url: https://www.linkedin.com/company/documenso
+- type: Website
+  url: https://documenso.com
+- type: Documentation
+  url: https://docs.documenso.com
+- type: Plans
+  url: plans/documenso-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/documenso-rate-limits.yml
+- type: FinOps
+  url: finops/documenso-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
