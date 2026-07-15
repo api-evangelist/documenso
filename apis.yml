@@ -128,6 +128,8 @@ apis:
     sent, opened, signed, completed, rejected, cancelled - plus template events. Payloads
     are verified with a shared secret sent in the X-Documenso-Secret header.
 common:
+- type: AgenticAccess
+  url: agentic-access/documenso-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/documenso-vulnerability-disclosure.yml
 - type: DomainSecurity
