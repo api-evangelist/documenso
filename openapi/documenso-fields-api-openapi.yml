@@ -1,0 +1,159 @@
+openapi: 3.0.1
+info:
+  title: Documenso Public Documents Fields API
+  description: Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.
+  termsOfService: https://documenso.com/legal/terms
+  contact:
+    name: Documenso Support
+    email: support@documenso.com
+    url: https://documenso.com
+  license:
+    name: AGPL-3.0
+    url: https://github.com/documenso/documenso/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.documenso.com/api/v1
+  description: Documenso Cloud (production)
+security:
+- apiToken: []
+tags:
+- name: Fields
+  description: Add and configure signature and form fields on a document.
+paths:
+  /documents/{id}/fields:
+    post:
+      operationId: createField
+      tags:
+      - Fields
+      summary: Create a field for a document
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldRequest'
+      responses:
+        '200':
+          description: Field created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+  /documents/{id}/fields/{fieldId}:
+    patch:
+      operationId: updateField
+      tags:
+      - Fields
+      summary: Update a field
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      - $ref: '#/components/parameters/FieldId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldRequest'
+      responses:
+        '200':
+          description: Field updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+    delete:
+      operationId: deleteField
+      tags:
+      - Fields
+      summary: Delete a field
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      - $ref: '#/components/parameters/FieldId'
+      responses:
+        '200':
+          description: Field deleted.
+components:
+  schemas:
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        page:
+          type: integer
+        positionX:
+          type: number
+        positionY:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
+    CreateFieldRequest:
+      type: object
+      required:
+      - recipientId
+      - type
+      - pageNumber
+      - pageX
+      - pageY
+      - pageWidth
+      - pageHeight
+      properties:
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        pageNumber:
+          type: integer
+        pageX:
+          type: number
+          description: X position as a percentage of page width.
+        pageY:
+          type: number
+          description: Y position as a percentage of page height.
+        pageWidth:
+          type: number
+        pageHeight:
+          type: number
+  parameters:
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    FieldId:
+      name: fieldId
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API token issued from the Documenso dashboard, sent in the Authorization header (format `api_xxxxxxxx`).

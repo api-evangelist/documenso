@@ -1,0 +1,158 @@
+openapi: 3.0.1
+info:
+  title: Documenso Public Documents Recipients API
+  description: Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.
+  termsOfService: https://documenso.com/legal/terms
+  contact:
+    name: Documenso Support
+    email: support@documenso.com
+    url: https://documenso.com
+  license:
+    name: AGPL-3.0
+    url: https://github.com/documenso/documenso/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.documenso.com/api/v1
+  description: Documenso Cloud (production)
+security:
+- apiToken: []
+tags:
+- name: Recipients
+  description: Manage the recipients (signers, approvers, viewers) of a document.
+paths:
+  /documents/{id}/recipients:
+    post:
+      operationId: createRecipient
+      tags:
+      - Recipients
+      summary: Create a recipient for a document
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecipientRequest'
+      responses:
+        '200':
+          description: Recipient created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+  /documents/{id}/recipients/{recipientId}:
+    patch:
+      operationId: updateRecipient
+      tags:
+      - Recipients
+      summary: Update a recipient
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      - $ref: '#/components/parameters/RecipientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecipientRequest'
+      responses:
+        '200':
+          description: Recipient updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+    delete:
+      operationId: deleteRecipient
+      tags:
+      - Recipients
+      summary: Delete a recipient
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      - $ref: '#/components/parameters/RecipientId'
+      responses:
+        '200':
+          description: Recipient deleted.
+components:
+  schemas:
+    CreateRecipientRequest:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type: integer
+          nullable: true
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type: integer
+          nullable: true
+        token:
+          type: string
+        signingStatus:
+          type: string
+          enum:
+          - NOT_SIGNED
+          - SIGNED
+          - REJECTED
+        readStatus:
+          type: string
+          enum:
+          - NOT_OPENED
+          - OPENED
+        sendStatus:
+          type: string
+          enum:
+          - NOT_SENT
+          - SENT
+  parameters:
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    RecipientId:
+      name: recipientId
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API token issued from the Documenso dashboard, sent in the Authorization header (format `api_xxxxxxxx`).

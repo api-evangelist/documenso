@@ -1,0 +1,408 @@
+openapi: 3.0.1
+info:
+  title: Documenso Public Documents API
+  description: Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.
+  termsOfService: https://documenso.com/legal/terms
+  contact:
+    name: Documenso Support
+    email: support@documenso.com
+    url: https://documenso.com
+  license:
+    name: AGPL-3.0
+    url: https://github.com/documenso/documenso/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.documenso.com/api/v1
+  description: Documenso Cloud (production)
+security:
+- apiToken: []
+tags:
+- name: Documents
+  description: Create, upload, send, retrieve, download, and delete documents.
+paths:
+  /documents:
+    get:
+      operationId: getDocuments
+      tags:
+      - Documents
+      summary: Get all documents
+      description: Returns a paginated list of documents visible to the API token.
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: A paginated list of documents.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Document'
+                  totalPages:
+                    type: integer
+    post:
+      operationId: createDocument
+      tags:
+      - Documents
+      summary: Upload a new document
+      description: Creates a new draft document and returns a presigned upload URL that the PDF must be uploaded to. Recipients and meta options can be set at creation time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocumentRequest'
+      responses:
+        '200':
+          description: Document created with presigned upload URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDocumentResponse'
+  /documents/{id}:
+    get:
+      operationId: getDocument
+      tags:
+      - Documents
+      summary: Get a single document
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: The requested document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDocument
+      tags:
+      - Documents
+      summary: Delete a document
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: Document deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents/{id}/download:
+    get:
+      operationId: downloadSignedDocument
+      tags:
+      - Documents
+      summary: Download a signed document
+      description: Returns a presigned URL to download the signed PDF from storage.
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: Presigned download URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  downloadUrl:
+                    type: string
+                    format: uri
+  /documents/{id}/send:
+    post:
+      operationId: sendDocument
+      tags:
+      - Documents
+      summary: Send a document for signing
+      description: Distributes the document to its recipients for signature.
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sendEmail:
+                  type: boolean
+                  default: true
+                sendCompletionEmails:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: Document sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+  /documents/{id}/resend:
+    post:
+      operationId: resendDocument
+      tags:
+      - Documents
+      summary: Re-send a document for signing
+      description: Re-sends the signing request to selected recipients.
+      parameters:
+      - $ref: '#/components/parameters/DocumentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipients:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Document re-sent.
+components:
+  schemas:
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        page:
+          type: integer
+        positionX:
+          type: number
+        positionY:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+    DocumentStatus:
+      type: string
+      enum:
+      - DRAFT
+      - PENDING
+      - COMPLETED
+      - REJECTED
+      - CANCELLED
+    CreateDocumentRequest:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+        externalId:
+          type: string
+          nullable: true
+        folderId:
+          type: string
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRecipientRequest'
+        meta:
+          $ref: '#/components/schemas/DocumentMeta'
+        formValues:
+          type: object
+          additionalProperties: true
+    CreateRecipientRequest:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type: integer
+          nullable: true
+    CreateDocumentResponse:
+      type: object
+      properties:
+        documentId:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        uploadUrl:
+          type: string
+          format: uri
+          description: Presigned URL to upload the document PDF to.
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
+    DocumentMeta:
+      type: object
+      properties:
+        subject:
+          type: string
+        message:
+          type: string
+        timezone:
+          type: string
+        dateFormat:
+          type: string
+        redirectUrl:
+          type: string
+          format: uri
+        signingOrder:
+          type: string
+          enum:
+          - PARALLEL
+          - SEQUENTIAL
+        language:
+          type: string
+        distributionMethod:
+          type: string
+          enum:
+          - EMAIL
+          - NONE
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
+    Document:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        teamId:
+          type: integer
+          nullable: true
+        externalId:
+          type: string
+          nullable: true
+        folderId:
+          type: string
+          nullable: true
+        title:
+          type: string
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type: integer
+          nullable: true
+        token:
+          type: string
+        signingStatus:
+          type: string
+          enum:
+          - NOT_SIGNED
+          - SIGNED
+          - REJECTED
+        readStatus:
+          type: string
+          enum:
+          - NOT_OPENED
+          - OPENED
+        sendStatus:
+          type: string
+          enum:
+          - NOT_SENT
+          - SENT
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API token issued from the Documenso dashboard, sent in the Authorization header (format `api_xxxxxxxx`).
