@@ -1,0 +1,22 @@
+{
+  "provider": "documenso",
+  "sources": [
+    "documenso-documents-api-openapi.yml",
+    "documenso-fields-api-openapi.yml",
+    "documenso-recipients-api-openapi.yml",
+    "documenso-templates-api-openapi.yml"
+  ],
+  "outputs": [
+    "documenso-documents-api-openapi.yml",
+    "documenso-fields-api-openapi.yml",
+    "documenso-recipients-api-openapi.yml",
+    "documenso-templates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "documenso-templates-api-openapi.yml: dangling $ref: #/components/schemas/Template"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
