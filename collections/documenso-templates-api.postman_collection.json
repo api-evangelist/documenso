@@ -1,0 +1,538 @@
+{
+  "item": [
+    {
+      "id": "3e311cfd-17af-46e8-82d7-c91842576e42",
+      "name": "Templates",
+      "description": {
+        "content": "Manage reusable templates and generate documents from them.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5b08007-b3ae-4254-8b6d-5c9cb3e8b549",
+          "name": "Get all templates",
+          "request": {
+            "name": "Get all templates",
+            "description": {},
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b0c117e-d6a1-4ae0-aa26-254aa01422d0",
+              "name": "A paginated list of templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"templates\": [\n    {\n      \"value\": \"reference #/components/schemas/Template not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference #/components/schemas/Template not found in the OpenAPI spec\"\n    }\n  ],\n  \"totalPages\": 736\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f95f0dfa-5c01-4c68-99d6-dd859ba100db",
+          "name": "Create a template",
+          "request": {
+            "name": "Create a template",
+            "description": {
+              "content": "Creates a new template and returns a presigned upload URL for its PDF.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21cfa9d0-34ff-4007-860e-25f4204eab19",
+              "name": "Template created with presigned upload URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"templateId\": 3933,\n  \"uploadUrl\": \"http://mHQWjjeMcUHCyFyFJTgxI.asvbdd.RmcakV5tDghG1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ab94f41-885b-4de2-b62f-99dac24f55d0",
+          "name": "Get a single template",
+          "request": {
+            "name": "Get a single template",
+            "description": {},
+            "url": {
+              "path": [
+                "templates",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e738c4f7-8bf2-4cfa-84da-36adebd84deb",
+              "name": "The requested template.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12cab43f-bfd6-4402-947e-5c5946efcda3",
+          "name": "Delete a template",
+          "request": {
+            "name": "Delete a template",
+            "description": {},
+            "url": {
+              "path": [
+                "templates",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c1267b1-9768-40bb-a408-780852f349ee",
+              "name": "Template deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9227c019-e017-476a-9484-f82af9a37c7e",
+          "name": "Generate a document from a template",
+          "request": {
+            "name": "Generate a document from a template",
+            "description": {
+              "content": "Creates a new document from a template, optionally overriding the title, recipient details, and meta options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":templateId",
+                "generate-document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "templateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    }\n  ],\n  \"meta\": {\n    \"subject\": \"<string>\",\n    \"message\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"dateFormat\": \"<string>\",\n    \"redirectUrl\": \"<uri>\",\n    \"signingOrder\": \"<string>\",\n    \"language\": \"<string>\",\n    \"distributionMethod\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba8f688b-4854-44f0-9fae-7f7af764b7d6",
+              "name": "Document generated from template.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":templateId",
+                    "generate-document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    }\n  ],\n  \"meta\": {\n    \"subject\": \"<string>\",\n    \"message\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"dateFormat\": \"<string>\",\n    \"redirectUrl\": \"<uri>\",\n    \"signingOrder\": \"<string>\",\n    \"language\": \"<string>\",\n    \"distributionMethod\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 824,\n  \"userId\": 1523,\n  \"teamId\": 9450,\n  \"externalId\": \"string\",\n  \"folderId\": \"string\",\n  \"title\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdAt\": \"1961-11-03T16:52:26.021Z\",\n  \"updatedAt\": \"1980-02-15T16:22:23.743Z\",\n  \"completedAt\": \"2004-06-15T17:17:11.049Z\",\n  \"recipients\": [\n    {\n      \"id\": 1528,\n      \"documentId\": 5832,\n      \"email\": \"BOhLQNyiELJWBM@WphnFhYDtXSneYEksiXxnyWNJ.xjdc\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 6825,\n      \"token\": \"string\",\n      \"signingStatus\": \"NOT_SIGNED\",\n      \"readStatus\": \"NOT_OPENED\",\n      \"sendStatus\": \"SENT\"\n    },\n    {\n      \"id\": 6668,\n      \"documentId\": 5904,\n      \"email\": \"mKxr04lwRL@xGhMFWVe.jthv\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 9256,\n      \"token\": \"string\",\n      \"signingStatus\": \"REJECTED\",\n      \"readStatus\": \"NOT_OPENED\",\n      \"sendStatus\": \"NOT_SENT\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"id\": 9942,\n      \"documentId\": 211,\n      \"recipientId\": 1077,\n      \"type\": \"DATE\",\n      \"page\": 7623,\n      \"positionX\": 902.2416151280155,\n      \"positionY\": 4082.600532777523,\n      \"width\": 7542.516248528893,\n      \"height\": 4992.1360992478285\n    },\n    {\n      \"id\": 4881,\n      \"documentId\": 3903,\n      \"recipientId\": 8679,\n      \"type\": \"TEXT\",\n      \"page\": 1223,\n      \"positionX\": 9947.383324970953,\n      \"positionY\": 8495.947989416234,\n      \"width\": 7256.125454295681,\n      \"height\": 9160.553671081472\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.documenso.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c818fecf-19c4-4c22-9eec-b0f3418e9ca8",
+    "name": "Documenso Public Documents Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.\n\nContact Support:\n Name: Documenso Support\n Email: support@documenso.com",
+      "type": "text/plain"
+    }
+  }
+}

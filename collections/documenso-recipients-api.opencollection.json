@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Documenso Public Documents Recipients API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a recipient for a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/:id/recipients",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a recipient for a document"
+        },
+        {
+          "info": {
+            "name": "Update a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.documenso.com/api/v1/documents/:id/recipients/:recipientId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a recipient"
+        },
+        {
+          "info": {
+            "name": "Delete a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/documents/:id/recipients/:recipientId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a recipient"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

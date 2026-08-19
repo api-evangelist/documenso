@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Documenso Public Documents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/documents",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of documents visible to the API token."
+        },
+        {
+          "info": {
+            "name": "Upload a new document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new draft document and returns a presigned upload URL that the PDF must be uploaded to. Recipients and meta options can be set at creation time."
+        },
+        {
+          "info": {
+            "name": "Get a single document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single document"
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a document"
+        },
+        {
+          "info": {
+            "name": "Download a signed document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/documents/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a presigned URL to download the signed PDF from storage."
+        },
+        {
+          "info": {
+            "name": "Send a document for signing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/:id/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Distributes the document to its recipients for signature."
+        },
+        {
+          "info": {
+            "name": "Re-send a document for signing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/documents/:id/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-sends the signing request to selected recipients."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

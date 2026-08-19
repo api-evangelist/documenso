@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Documenso Public Documents Templates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/templates",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all templates"
+        },
+        {
+          "info": {
+            "name": "Create a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new template and returns a presigned upload URL for its PDF."
+        },
+        {
+          "info": {
+            "name": "Get a single template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.documenso.com/api/v1/templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single template"
+        },
+        {
+          "info": {
+            "name": "Delete a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.documenso.com/api/v1/templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a template"
+        },
+        {
+          "info": {
+            "name": "Generate a document from a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.documenso.com/api/v1/templates/:templateId/generate-document",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new document from a template, optionally overriding the title, recipient details, and meta options."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,860 @@
+{
+  "item": [
+    {
+      "id": "d2f415ce-0bf4-48ca-a950-7e490ffc26af",
+      "name": "Documents",
+      "description": {
+        "content": "Create, upload, send, retrieve, download, and delete documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7775a71-5915-4e43-b435-8b49698a65a3",
+          "name": "Get all documents",
+          "request": {
+            "name": "Get all documents",
+            "description": {
+              "content": "Returns a paginated list of documents visible to the API token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f6cc7e9-5916-4042-922a-87d596fe1c10",
+              "name": "A paginated list of documents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documents\": [\n    {\n      \"id\": 6756,\n      \"userId\": 5491,\n      \"teamId\": 9758,\n      \"externalId\": \"string\",\n      \"folderId\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"REJECTED\",\n      \"createdAt\": \"2002-07-09T07:23:33.749Z\",\n      \"updatedAt\": \"2022-08-10T17:00:29.813Z\",\n      \"completedAt\": \"2015-04-11T07:20:47.304Z\",\n      \"recipients\": [\n        {\n          \"id\": 1591,\n          \"documentId\": 8442,\n          \"email\": \"mtZSo@fBasyW.fh\",\n          \"name\": \"string\",\n          \"role\": \"SIGNER\",\n          \"signingOrder\": 473,\n          \"token\": \"string\",\n          \"signingStatus\": \"SIGNED\",\n          \"readStatus\": \"OPENED\",\n          \"sendStatus\": \"NOT_SENT\"\n        },\n        {\n          \"id\": 9789,\n          \"documentId\": 9760,\n          \"email\": \"QlWjV9u@KUscfwqL.zag\",\n          \"name\": \"string\",\n          \"role\": \"SIGNER\",\n          \"signingOrder\": 5513,\n          \"token\": \"string\",\n          \"signingStatus\": \"SIGNED\",\n          \"readStatus\": \"NOT_OPENED\",\n          \"sendStatus\": \"NOT_SENT\"\n        }\n      ],\n      \"fields\": [\n        {\n          \"id\": 2483,\n          \"documentId\": 5042,\n          \"recipientId\": 6905,\n          \"type\": \"INITIALS\",\n          \"page\": 4011,\n          \"positionX\": 9209.411044509878,\n          \"positionY\": 3379.4007935520544,\n          \"width\": 1157.0870978298242,\n          \"height\": 6219.7064708301195\n        },\n        {\n          \"id\": 6725,\n          \"documentId\": 9413,\n          \"recipientId\": 615,\n          \"type\": \"SIGNATURE\",\n          \"page\": 63,\n          \"positionX\": 1256.510056801281,\n          \"positionY\": 8486.246626577718,\n          \"width\": 2664.529448912585,\n          \"height\": 6788.429429911351\n        }\n      ]\n    },\n    {\n      \"id\": 1277,\n      \"userId\": 8612,\n      \"teamId\": 6679,\n      \"externalId\": \"string\",\n      \"folderId\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"COMPLETED\",\n      \"createdAt\": \"1982-11-14T13:13:32.487Z\",\n      \"updatedAt\": \"1961-03-14T01:07:24.645Z\",\n      \"completedAt\": \"1953-10-14T11:51:22.891Z\",\n      \"recipients\": [\n        {\n          \"id\": 9805,\n          \"documentId\": 4540,\n          \"email\": \"rj50aHVKtQzhWjF@dP.qz\",\n          \"name\": \"string\",\n          \"role\": \"SIGNER\",\n          \"signingOrder\": 7385,\n          \"token\": \"string\",\n          \"signingStatus\": \"REJECTED\",\n          \"readStatus\": \"NOT_OPENED\",\n          \"sendStatus\": \"SENT\"\n        },\n        {\n          \"id\": 3713,\n          \"documentId\": 9962,\n          \"email\": \"LYlMIAsppObTpbZ@rjAH.lu\",\n          \"name\": \"string\",\n          \"role\": \"SIGNER\",\n          \"signingOrder\": 824,\n          \"token\": \"string\",\n          \"signingStatus\": \"REJECTED\",\n          \"readStatus\": \"OPENED\",\n          \"sendStatus\": \"SENT\"\n        }\n      ],\n      \"fields\": [\n        {\n          \"id\": 8233,\n          \"documentId\": 8297,\n          \"recipientId\": 5808,\n          \"type\": \"RADIO\",\n          \"page\": 3848,\n          \"positionX\": 6178.837787430132,\n          \"positionY\": 6935.267681766485,\n          \"width\": 1497.3683629310485,\n          \"height\": 6704.541869709874\n        },\n        {\n          \"id\": 4375,\n          \"documentId\": 9834,\n          \"recipientId\": 6072,\n          \"type\": \"RADIO\",\n          \"page\": 3708,\n          \"positionX\": 956.5040714624928,\n          \"positionY\": 9063.51989989614,\n          \"width\": 6011.7118616726275,\n          \"height\": 6438.232958638271\n        }\n      ]\n    }\n  ],\n  \"totalPages\": 1155\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4498e23b-4073-49db-88f9-37c93e144a06",
+          "name": "Upload a new document",
+          "request": {
+            "name": "Upload a new document",
+            "description": {
+              "content": "Creates a new draft document and returns a presigned upload URL that the PDF must be uploaded to. Recipients and meta options can be set at creation time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    }\n  ],\n  \"meta\": {\n    \"subject\": \"<string>\",\n    \"message\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"dateFormat\": \"<string>\",\n    \"redirectUrl\": \"<uri>\",\n    \"signingOrder\": \"<string>\",\n    \"language\": \"<string>\",\n    \"distributionMethod\": \"<string>\"\n  },\n  \"formValues\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": 3686.5885389527375\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43ef1913-89ee-4ac3-a1f4-fe16fc27cd30",
+              "name": "Document created with presigned upload URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"recipients\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": \"<integer>\"\n    }\n  ],\n  \"meta\": {\n    \"subject\": \"<string>\",\n    \"message\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"dateFormat\": \"<string>\",\n    \"redirectUrl\": \"<uri>\",\n    \"signingOrder\": \"<string>\",\n    \"language\": \"<string>\",\n    \"distributionMethod\": \"<string>\"\n  },\n  \"formValues\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentId\": 8491,\n  \"recipients\": [\n    {\n      \"id\": 1924,\n      \"documentId\": 9387,\n      \"email\": \"slCalaJn8qI@zqLogr.sr\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 8963,\n      \"token\": \"string\",\n      \"signingStatus\": \"NOT_SIGNED\",\n      \"readStatus\": \"NOT_OPENED\",\n      \"sendStatus\": \"SENT\"\n    },\n    {\n      \"id\": 1810,\n      \"documentId\": 9253,\n      \"email\": \"EFn2QLb@gLaOZCGVYWcFZesAwbREmGeMaRpBi.wrr\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 3276,\n      \"token\": \"string\",\n      \"signingStatus\": \"REJECTED\",\n      \"readStatus\": \"NOT_OPENED\",\n      \"sendStatus\": \"NOT_SENT\"\n    }\n  ],\n  \"uploadUrl\": \"https://NFpFVeOvsrdBTplVrkkFSP.njcAl\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45c2f432-6bc0-4629-8645-581205d0a5b4",
+          "name": "Get a single document",
+          "request": {
+            "name": "Get a single document",
+            "description": {},
+            "url": {
+              "path": [
+                "documents",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daa6d4f6-e423-4801-ba4c-92360a273827",
+              "name": "The requested document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8620,\n  \"userId\": 1365,\n  \"teamId\": 1042,\n  \"externalId\": \"string\",\n  \"folderId\": \"string\",\n  \"title\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdAt\": \"1962-01-13T22:18:59.150Z\",\n  \"updatedAt\": \"2019-07-24T21:55:47.259Z\",\n  \"completedAt\": \"1984-08-21T17:43:34.312Z\",\n  \"recipients\": [\n    {\n      \"id\": 2892,\n      \"documentId\": 6477,\n      \"email\": \"9LkYl3hDUmzwn21@qO.hq\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 1548,\n      \"token\": \"string\",\n      \"signingStatus\": \"SIGNED\",\n      \"readStatus\": \"OPENED\",\n      \"sendStatus\": \"NOT_SENT\"\n    },\n    {\n      \"id\": 5612,\n      \"documentId\": 5328,\n      \"email\": \"YxI2mtwKQ@ufTcloVRVbYpfjrSwnaiqfSkEEfhRvsz.tutp\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 6786,\n      \"token\": \"string\",\n      \"signingStatus\": \"NOT_SIGNED\",\n      \"readStatus\": \"NOT_OPENED\",\n      \"sendStatus\": \"SENT\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"id\": 8728,\n      \"documentId\": 6417,\n      \"recipientId\": 1179,\n      \"type\": \"INITIALS\",\n      \"page\": 2458,\n      \"positionX\": 94.7485000480186,\n      \"positionY\": 305.1011564807515,\n      \"width\": 3568.8953380173325,\n      \"height\": 8795.018499487047\n    },\n    {\n      \"id\": 6597,\n      \"documentId\": 5260,\n      \"recipientId\": 4417,\n      \"type\": \"DATE\",\n      \"page\": 5621,\n      \"positionX\": 893.7654763758551,\n      \"positionY\": 2405.199896141987,\n      \"width\": 8513.315887833662,\n      \"height\": 4868.444488769355\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89142953-79f0-4b5d-9840-927086d98f6a",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a1b8a3a-f687-4935-bd44-eacb8aa5d443",
+          "name": "Delete a document",
+          "request": {
+            "name": "Delete a document",
+            "description": {},
+            "url": {
+              "path": [
+                "documents",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f88d883-ea11-40c8-bfc2-eb60985b1a00",
+              "name": "Document deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee94c5e0-efea-449e-9b5f-a376cc12a957",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23a14ed0-161a-4d79-925f-595f20eb9882",
+          "name": "Download a signed document",
+          "request": {
+            "name": "Download a signed document",
+            "description": {
+              "content": "Returns a presigned URL to download the signed PDF from storage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eac63b8-442d-4b4e-9346-35e079f8478d",
+              "name": "Presigned download URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"downloadUrl\": \"https://WyKpiuYVjwEctepyROdBEjpDJmQoOSft.qsbam29uflQgBRSbix,-NuBzzgQ0v2mW+NxY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68648bf0-0700-46ba-8648-da109346ce01",
+          "name": "Send a document for signing",
+          "request": {
+            "name": "Send a document for signing",
+            "description": {
+              "content": "Distributes the document to its recipients for signature.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":id",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sendEmail\": true,\n  \"sendCompletionEmails\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "859743fb-827e-40f6-aa73-e73caae28dad",
+              "name": "Document sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sendEmail\": true,\n  \"sendCompletionEmails\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8620,\n  \"userId\": 1365,\n  \"teamId\": 1042,\n  \"externalId\": \"string\",\n  \"folderId\": \"string\",\n  \"title\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdAt\": \"1962-01-13T22:18:59.150Z\",\n  \"updatedAt\": \"2019-07-24T21:55:47.259Z\",\n  \"completedAt\": \"1984-08-21T17:43:34.312Z\",\n  \"recipients\": [\n    {\n      \"id\": 2892,\n      \"documentId\": 6477,\n      \"email\": \"9LkYl3hDUmzwn21@qO.hq\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 1548,\n      \"token\": \"string\",\n      \"signingStatus\": \"SIGNED\",\n      \"readStatus\": \"OPENED\",\n      \"sendStatus\": \"NOT_SENT\"\n    },\n    {\n      \"id\": 5612,\n      \"documentId\": 5328,\n      \"email\": \"YxI2mtwKQ@ufTcloVRVbYpfjrSwnaiqfSkEEfhRvsz.tutp\",\n      \"name\": \"string\",\n      \"role\": \"SIGNER\",\n      \"signingOrder\": 6786,\n      \"token\": \"string\",\n      \"signingStatus\": \"NOT_SIGNED\",\n      \"readStatus\": \"NOT_OPENED\",\n      \"sendStatus\": \"SENT\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"id\": 8728,\n      \"documentId\": 6417,\n      \"recipientId\": 1179,\n      \"type\": \"INITIALS\",\n      \"page\": 2458,\n      \"positionX\": 94.7485000480186,\n      \"positionY\": 305.1011564807515,\n      \"width\": 3568.8953380173325,\n      \"height\": 8795.018499487047\n    },\n    {\n      \"id\": 6597,\n      \"documentId\": 5260,\n      \"recipientId\": 4417,\n      \"type\": \"DATE\",\n      \"page\": 5621,\n      \"positionX\": 893.7654763758551,\n      \"positionY\": 2405.199896141987,\n      \"width\": 8513.315887833662,\n      \"height\": 4868.444488769355\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50b63c14-7872-49b6-8297-9e923cef69e5",
+          "name": "Re-send a document for signing",
+          "request": {
+            "name": "Re-send a document for signing",
+            "description": {
+              "content": "Re-sends the signing request to selected recipients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":id",
+                "resend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aea674e7-4710-43e3-946e-1c48abb672bf",
+              "name": "Document re-sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":id",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.documenso.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "93ef26d2-859c-42a1-a7b0-464ea1c80b91",
+    "name": "Documenso Public Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.\n\nContact Support:\n Name: Documenso Support\n Email: support@documenso.com",
+      "type": "text/plain"
+    }
+  }
+}
