@@ -25,6 +25,12 @@ tags:
 - E-Signature
 - Documents
 - Signing
+- Open-Source
+- DocuSign Alternative
+tags_raw:
+- E-Signature
+- Documents
+- Signing
 - Open Source
 - DocuSign Alternative
 created: '2026-06-20'
@@ -34,6 +40,10 @@ apis:
 - aid: documenso:webhooks
   name: Documenso Webhooks
   tags:
+  - Webhook
+  - Event
+  - Notification
+  tags_raw:
   - Webhooks
   - Events
   - Notifications
