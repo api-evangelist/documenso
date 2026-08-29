@@ -7,6 +7,18 @@ description: Documenso is the open-source DocuSign alternative, a developer-frie
   API lets you create and upload documents, add recipients and signature fields, send
   documents for signing, work with reusable templates, and receive webhook events
   across the document lifecycle. Self-hostable under AGPL.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
