@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Documenso Public Documents API
   description: Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.
@@ -176,57 +176,13 @@ paths:
           description: Document re-sent.
 components:
   schemas:
-    Field:
+    Error:
       type: object
       properties:
-        id:
-          type: integer
-        documentId:
-          type: integer
-        recipientId:
-          type: integer
-        type:
-          $ref: '#/components/schemas/FieldType'
-        page:
-          type: integer
-        positionX:
-          type: number
-        positionY:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-    DocumentStatus:
-      type: string
-      enum:
-      - DRAFT
-      - PENDING
-      - COMPLETED
-      - REJECTED
-      - CANCELLED
-    CreateDocumentRequest:
-      type: object
-      required:
-      - title
-      properties:
-        title:
+        message:
           type: string
-          minLength: 1
-        externalId:
+        code:
           type: string
-          nullable: true
-        folderId:
-          type: string
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateRecipientRequest'
-        meta:
-          $ref: '#/components/schemas/DocumentMeta'
-        formValues:
-          type: object
-          additionalProperties: true
     CreateRecipientRequest:
       type: object
       required:
@@ -242,21 +198,9 @@ components:
         role:
           $ref: '#/components/schemas/RecipientRole'
         signingOrder:
-          type: integer
-          nullable: true
-    CreateDocumentResponse:
-      type: object
-      properties:
-        documentId:
-          type: integer
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipient'
-        uploadUrl:
-          type: string
-          format: uri
-          description: Presigned URL to upload the document PDF to.
+          type:
+          - integer
+          - 'null'
     FieldType:
       type: string
       enum:
@@ -297,60 +241,6 @@ components:
           enum:
           - EMAIL
           - NONE
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
-    Document:
-      type: object
-      properties:
-        id:
-          type: integer
-        userId:
-          type: integer
-        teamId:
-          type: integer
-          nullable: true
-        externalId:
-          type: string
-          nullable: true
-        folderId:
-          type: string
-          nullable: true
-        title:
-          type: string
-        status:
-          $ref: '#/components/schemas/DocumentStatus'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-          nullable: true
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipient'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
     Recipient:
       type: object
       properties:
@@ -366,8 +256,9 @@ components:
         role:
           $ref: '#/components/schemas/RecipientRole'
         signingOrder:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         token:
           type: string
         signingStatus:
@@ -386,13 +277,122 @@ components:
           enum:
           - NOT_SENT
           - SENT
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
+    CreateDocumentRequest:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+        externalId:
+          type:
+          - string
+          - 'null'
+        folderId:
+          type: string
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRecipientRequest'
+        meta:
+          $ref: '#/components/schemas/DocumentMeta'
+        formValues:
+          type: object
+          additionalProperties: true
+    Document:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        teamId:
+          type:
+          - integer
+          - 'null'
+        externalId:
+          type:
+          - string
+          - 'null'
+        folderId:
+          type:
+          - string
+          - 'null'
+        title:
+          type: string
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    DocumentStatus:
+      type: string
+      enum:
+      - DRAFT
+      - PENDING
+      - COMPLETED
+      - REJECTED
+      - CANCELLED
+    CreateDocumentResponse:
+      type: object
+      properties:
+        documentId:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        uploadUrl:
+          type: string
+          format: uri
+          description: Presigned URL to upload the document PDF to.
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        page:
+          type: integer
+        positionX:
+          type: number
+        positionY:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
   parameters:
     DocumentId:
       name: id
@@ -400,6 +400,13 @@ components:
       required: true
       schema:
         type: integer
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiToken:
       type: apiKey

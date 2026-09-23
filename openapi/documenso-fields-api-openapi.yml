@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Documenso Public Documents Fields API
+  title: Documenso Public Fields API
   description: Public REST API (v1) for Documenso, the open-source DocuSign alternative. Programmatically create, upload, send, retrieve, and delete documents, manage recipients (signers) and signature fields, and work with reusable templates. Authentication uses a per-account API token passed in the Authorization header.
   termsOfService: https://documenso.com/legal/terms
   contact:
@@ -75,28 +75,20 @@ paths:
         '200':
           description: Field deleted.
 components:
+  parameters:
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    FieldId:
+      name: fieldId
+      in: path
+      required: true
+      schema:
+        type: integer
   schemas:
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        documentId:
-          type: integer
-        recipientId:
-          type: integer
-        type:
-          $ref: '#/components/schemas/FieldType'
-        page:
-          type: integer
-        positionX:
-          type: number
-        positionY:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
     FieldType:
       type: string
       enum:
@@ -138,19 +130,27 @@ components:
           type: number
         pageHeight:
           type: number
-  parameters:
-    DocumentId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-    FieldId:
-      name: fieldId
-      in: path
-      required: true
-      schema:
-        type: integer
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        page:
+          type: integer
+        positionX:
+          type: number
+        positionY:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
   securitySchemes:
     apiToken:
       type: apiKey
