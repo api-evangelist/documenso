@@ -75,29 +75,7 @@ paths:
         '200':
           description: Recipient deleted.
 components:
-  parameters:
-    RecipientId:
-      name: recipientId
-      in: path
-      required: true
-      schema:
-        type: integer
-    DocumentId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
   schemas:
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
     Recipient:
       type: object
       properties:
@@ -134,6 +112,15 @@ components:
           enum:
           - NOT_SENT
           - SENT
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
     CreateRecipientRequest:
       type: object
       required:
@@ -152,6 +139,19 @@ components:
           type:
           - integer
           - 'null'
+  parameters:
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    RecipientId:
+      name: recipientId
+      in: path
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     apiToken:
       type: apiKey

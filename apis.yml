@@ -8,16 +8,22 @@ description: Documenso is the open-source DocuSign alternative, a developer-frie
   documents for signing, work with reusable templates, and receive webhook events
   across the document lifecycle. Self-hostable under AGPL.
 deliveryModel:
-  model: saas
-  open_source: false
+  model: open-core
+  license: AGPL-3.0
+  license_evidence:
+    repo: documenso/documenso
+    spdx: AGPL-3.0
+    stars: 15184
+  open_source: true
   commercial: true
   callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: high
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -38,7 +44,7 @@ tags:
 - E-Signature
 - Documents
 - Signing
-- Open-Source
+- Open Source
 - DocuSign Alternative
 tags_raw:
 - E-Signature
@@ -46,6 +52,7 @@ tags_raw:
 - Signing
 - Open Source
 - DocuSign Alternative
+- Open-Source
 created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.23'

@@ -156,91 +156,6 @@ components:
       schema:
         type: integer
   schemas:
-    FieldType:
-      type: string
-      enum:
-      - SIGNATURE
-      - FREE_SIGNATURE
-      - INITIALS
-      - NAME
-      - EMAIL
-      - DATE
-      - TEXT
-      - NUMBER
-      - RADIO
-      - CHECKBOX
-      - DROPDOWN
-    DocumentMeta:
-      type: object
-      properties:
-        subject:
-          type: string
-        message:
-          type: string
-        timezone:
-          type: string
-        dateFormat:
-          type: string
-        redirectUrl:
-          type: string
-          format: uri
-        signingOrder:
-          type: string
-          enum:
-          - PARALLEL
-          - SEQUENTIAL
-        language:
-          type: string
-        distributionMethod:
-          type: string
-          enum:
-          - EMAIL
-          - NONE
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
-    Recipient:
-      type: object
-      properties:
-        id:
-          type: integer
-        documentId:
-          type: integer
-        email:
-          type: string
-          format: email
-        name:
-          type: string
-        role:
-          $ref: '#/components/schemas/RecipientRole'
-        signingOrder:
-          type:
-          - integer
-          - 'null'
-        token:
-          type: string
-        signingStatus:
-          type: string
-          enum:
-          - NOT_SIGNED
-          - SIGNED
-          - REJECTED
-        readStatus:
-          type: string
-          enum:
-          - NOT_OPENED
-          - OPENED
-        sendStatus:
-          type: string
-          enum:
-          - NOT_SENT
-          - SENT
     Document:
       type: object
       properties:
@@ -283,6 +198,65 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Field'
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type:
+          - integer
+          - 'null'
+        token:
+          type: string
+        signingStatus:
+          type: string
+          enum:
+          - NOT_SIGNED
+          - SIGNED
+          - REJECTED
+        readStatus:
+          type: string
+          enum:
+          - NOT_OPENED
+          - OPENED
+        sendStatus:
+          type: string
+          enum:
+          - NOT_SENT
+          - SENT
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
     CreateRecipientRequest:
       type: object
       required:
@@ -330,6 +304,32 @@ components:
           type: number
         height:
           type: number
+    DocumentMeta:
+      type: object
+      properties:
+        subject:
+          type: string
+        message:
+          type: string
+        timezone:
+          type: string
+        dateFormat:
+          type: string
+        redirectUrl:
+          type: string
+          format: uri
+        signingOrder:
+          type: string
+          enum:
+          - PARALLEL
+          - SEQUENTIAL
+        language:
+          type: string
+        distributionMethod:
+          type: string
+          enum:
+          - EMAIL
+          - NONE
   securitySchemes:
     apiToken:
       type: apiKey
