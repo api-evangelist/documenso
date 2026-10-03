@@ -75,19 +75,6 @@ paths:
         '200':
           description: Field deleted.
 components:
-  parameters:
-    DocumentId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-    FieldId:
-      name: fieldId
-      in: path
-      required: true
-      schema:
-        type: integer
   schemas:
     FieldType:
       type: string
@@ -151,6 +138,19 @@ components:
           type: number
         height:
           type: number
+  parameters:
+    FieldId:
+      name: fieldId
+      in: path
+      required: true
+      schema:
+        type: integer
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     apiToken:
       type: apiKey
