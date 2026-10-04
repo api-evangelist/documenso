@@ -75,34 +75,20 @@ paths:
         '200':
           description: Recipient deleted.
 components:
+  parameters:
+    RecipientId:
+      name: recipientId
+      in: path
+      required: true
+      schema:
+        type: integer
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
   schemas:
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
-    CreateRecipientRequest:
-      type: object
-      required:
-      - name
-      - email
-      properties:
-        name:
-          type: string
-          minLength: 1
-        email:
-          type: string
-          format: email
-        role:
-          $ref: '#/components/schemas/RecipientRole'
-        signingOrder:
-          type:
-          - integer
-          - 'null'
     Recipient:
       type: object
       properties:
@@ -139,19 +125,33 @@ components:
           enum:
           - NOT_SENT
           - SENT
-  parameters:
-    RecipientId:
-      name: recipientId
-      in: path
-      required: true
-      schema:
-        type: integer
-    DocumentId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
+    CreateRecipientRequest:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type:
+          - integer
+          - 'null'
   securitySchemes:
     apiToken:
       type: apiKey

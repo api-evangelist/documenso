@@ -148,69 +148,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/Document'
 components:
+  parameters:
+    TemplateId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
   schemas:
-    Field:
+    DocumentMeta:
       type: object
       properties:
-        id:
-          type: integer
-        documentId:
-          type: integer
-        recipientId:
-          type: integer
-        type:
-          $ref: '#/components/schemas/FieldType'
-        page:
-          type: integer
-        positionX:
-          type: number
-        positionY:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
-    FieldType:
-      type: string
-      enum:
-      - SIGNATURE
-      - FREE_SIGNATURE
-      - INITIALS
-      - NAME
-      - EMAIL
-      - DATE
-      - TEXT
-      - NUMBER
-      - RADIO
-      - CHECKBOX
-      - DROPDOWN
-    CreateRecipientRequest:
-      type: object
-      required:
-      - name
-      - email
-      properties:
-        name:
+        subject:
           type: string
-          minLength: 1
-        email:
+        message:
           type: string
-          format: email
-        role:
-          $ref: '#/components/schemas/RecipientRole'
+        timezone:
+          type: string
+        dateFormat:
+          type: string
+        redirectUrl:
+          type: string
+          format: uri
         signingOrder:
-          type:
-          - integer
-          - 'null'
+          type: string
+          enum:
+          - PARALLEL
+          - SEQUENTIAL
+        language:
+          type: string
+        distributionMethod:
+          type: string
+          enum:
+          - EMAIL
+          - NONE
     Recipient:
       type: object
       properties:
@@ -247,6 +218,15 @@ components:
           enum:
           - NOT_SENT
           - SENT
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
     Document:
       type: object
       properties:
@@ -289,32 +269,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Field'
-    DocumentMeta:
+    CreateRecipientRequest:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type:
+          - integer
+          - 'null'
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
+    Field:
       type: object
       properties:
-        subject:
-          type: string
-        message:
-          type: string
-        timezone:
-          type: string
-        dateFormat:
-          type: string
-        redirectUrl:
-          type: string
-          format: uri
-        signingOrder:
-          type: string
-          enum:
-          - PARALLEL
-          - SEQUENTIAL
-        language:
-          type: string
-        distributionMethod:
-          type: string
-          enum:
-          - EMAIL
-          - NONE
+        id:
+          type: integer
+        documentId:
+          type: integer
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        page:
+          type: integer
+        positionX:
+          type: number
+        positionY:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
     DocumentStatus:
       type: string
       enum:
@@ -323,13 +330,6 @@ components:
       - COMPLETED
       - REJECTED
       - CANCELLED
-  parameters:
-    TemplateId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
   securitySchemes:
     apiToken:
       type: apiKey

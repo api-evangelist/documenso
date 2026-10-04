@@ -176,55 +176,29 @@ paths:
           description: Document re-sent.
 components:
   schemas:
-    DocumentStatus:
-      type: string
-      enum:
-      - DRAFT
-      - PENDING
-      - COMPLETED
-      - REJECTED
-      - CANCELLED
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
-    FieldType:
-      type: string
-      enum:
-      - SIGNATURE
-      - FREE_SIGNATURE
-      - INITIALS
-      - NAME
-      - EMAIL
-      - DATE
-      - TEXT
-      - NUMBER
-      - RADIO
-      - CHECKBOX
-      - DROPDOWN
-    CreateRecipientRequest:
+    CreateDocumentRequest:
       type: object
       required:
-      - name
-      - email
+      - title
       properties:
-        name:
+        title:
           type: string
           minLength: 1
-        email:
-          type: string
-          format: email
-        role:
-          $ref: '#/components/schemas/RecipientRole'
-        signingOrder:
+        externalId:
           type:
-          - integer
+          - string
           - 'null'
+        folderId:
+          type: string
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRecipientRequest'
+        meta:
+          $ref: '#/components/schemas/DocumentMeta'
+        formValues:
+          type: object
+          additionalProperties: true
     Error:
       type: object
       properties:
@@ -232,6 +206,32 @@ components:
           type: string
         code:
           type: string
+    DocumentMeta:
+      type: object
+      properties:
+        subject:
+          type: string
+        message:
+          type: string
+        timezone:
+          type: string
+        dateFormat:
+          type: string
+        redirectUrl:
+          type: string
+          format: uri
+        signingOrder:
+          type: string
+          enum:
+          - PARALLEL
+          - SEQUENTIAL
+        language:
+          type: string
+        distributionMethod:
+          type: string
+          enum:
+          - EMAIL
+          - NONE
     Recipient:
       type: object
       properties:
@@ -268,29 +268,15 @@ components:
           enum:
           - NOT_SENT
           - SENT
-    CreateDocumentRequest:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          minLength: 1
-        externalId:
-          type:
-          - string
-          - 'null'
-        folderId:
-          type: string
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateRecipientRequest'
-        meta:
-          $ref: '#/components/schemas/DocumentMeta'
-        formValues:
-          type: object
-          additionalProperties: true
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
     Document:
       type: object
       properties:
@@ -333,32 +319,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Field'
-    DocumentMeta:
-      type: object
-      properties:
-        subject:
-          type: string
-        message:
-          type: string
-        timezone:
-          type: string
-        dateFormat:
-          type: string
-        redirectUrl:
-          type: string
-          format: uri
-        signingOrder:
-          type: string
-          enum:
-          - PARALLEL
-          - SEQUENTIAL
-        language:
-          type: string
-        distributionMethod:
-          type: string
-          enum:
-          - EMAIL
-          - NONE
     CreateDocumentResponse:
       type: object
       properties:
@@ -372,6 +332,38 @@ components:
           type: string
           format: uri
           description: Presigned URL to upload the document PDF to.
+    CreateRecipientRequest:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type:
+          - integer
+          - 'null'
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
     Field:
       type: object
       properties:
@@ -393,13 +385,14 @@ components:
           type: number
         height:
           type: number
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    DocumentStatus:
+      type: string
+      enum:
+      - DRAFT
+      - PENDING
+      - COMPLETED
+      - REJECTED
+      - CANCELLED
   parameters:
     DocumentId:
       name: id
@@ -407,6 +400,13 @@ components:
       required: true
       schema:
         type: integer
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiToken:
       type: apiKey

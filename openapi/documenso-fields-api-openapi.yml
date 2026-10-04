@@ -76,20 +76,6 @@ paths:
           description: Field deleted.
 components:
   schemas:
-    FieldType:
-      type: string
-      enum:
-      - SIGNATURE
-      - FREE_SIGNATURE
-      - INITIALS
-      - NAME
-      - EMAIL
-      - DATE
-      - TEXT
-      - NUMBER
-      - RADIO
-      - CHECKBOX
-      - DROPDOWN
     CreateFieldRequest:
       type: object
       required:
@@ -117,6 +103,20 @@ components:
           type: number
         pageHeight:
           type: number
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
     Field:
       type: object
       properties:
