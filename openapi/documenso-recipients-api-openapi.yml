@@ -89,6 +89,33 @@ components:
       schema:
         type: integer
   schemas:
+    CreateRecipientRequest:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type:
+          - integer
+          - 'null'
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
     Recipient:
       type: object
       properties:
@@ -125,33 +152,6 @@ components:
           enum:
           - NOT_SENT
           - SENT
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
-    CreateRecipientRequest:
-      type: object
-      required:
-      - name
-      - email
-      properties:
-        name:
-          type: string
-          minLength: 1
-        email:
-          type: string
-          format: email
-        role:
-          $ref: '#/components/schemas/RecipientRole'
-        signingOrder:
-          type:
-          - integer
-          - 'null'
   securitySchemes:
     apiToken:
       type: apiKey

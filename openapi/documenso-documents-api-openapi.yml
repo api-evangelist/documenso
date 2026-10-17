@@ -176,29 +176,27 @@ paths:
           description: Document re-sent.
 components:
   schemas:
-    CreateDocumentRequest:
+    Field:
       type: object
-      required:
-      - title
       properties:
-        title:
-          type: string
-          minLength: 1
-        externalId:
-          type:
-          - string
-          - 'null'
-        folderId:
-          type: string
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateRecipientRequest'
-        meta:
-          $ref: '#/components/schemas/DocumentMeta'
-        formValues:
-          type: object
-          additionalProperties: true
+        id:
+          type: integer
+        documentId:
+          type: integer
+        recipientId:
+          type: integer
+        type:
+          $ref: '#/components/schemas/FieldType'
+        page:
+          type: integer
+        positionX:
+          type: number
+        positionY:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
     Error:
       type: object
       properties:
@@ -206,77 +204,6 @@ components:
           type: string
         code:
           type: string
-    DocumentMeta:
-      type: object
-      properties:
-        subject:
-          type: string
-        message:
-          type: string
-        timezone:
-          type: string
-        dateFormat:
-          type: string
-        redirectUrl:
-          type: string
-          format: uri
-        signingOrder:
-          type: string
-          enum:
-          - PARALLEL
-          - SEQUENTIAL
-        language:
-          type: string
-        distributionMethod:
-          type: string
-          enum:
-          - EMAIL
-          - NONE
-    Recipient:
-      type: object
-      properties:
-        id:
-          type: integer
-        documentId:
-          type: integer
-        email:
-          type: string
-          format: email
-        name:
-          type: string
-        role:
-          $ref: '#/components/schemas/RecipientRole'
-        signingOrder:
-          type:
-          - integer
-          - 'null'
-        token:
-          type: string
-        signingStatus:
-          type: string
-          enum:
-          - NOT_SIGNED
-          - SIGNED
-          - REJECTED
-        readStatus:
-          type: string
-          enum:
-          - NOT_OPENED
-          - OPENED
-        sendStatus:
-          type: string
-          enum:
-          - NOT_SENT
-          - SENT
-    RecipientRole:
-      type: string
-      default: SIGNER
-      enum:
-      - CC
-      - SIGNER
-      - VIEWER
-      - APPROVER
-      - ASSISTANT
     Document:
       type: object
       properties:
@@ -364,27 +291,41 @@ components:
       - RADIO
       - CHECKBOX
       - DROPDOWN
-    Field:
+    DocumentMeta:
       type: object
       properties:
-        id:
-          type: integer
-        documentId:
-          type: integer
-        recipientId:
-          type: integer
-        type:
-          $ref: '#/components/schemas/FieldType'
-        page:
-          type: integer
-        positionX:
-          type: number
-        positionY:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
+        subject:
+          type: string
+        message:
+          type: string
+        timezone:
+          type: string
+        dateFormat:
+          type: string
+        redirectUrl:
+          type: string
+          format: uri
+        signingOrder:
+          type: string
+          enum:
+          - PARALLEL
+          - SEQUENTIAL
+        language:
+          type: string
+        distributionMethod:
+          type: string
+          enum:
+          - EMAIL
+          - NONE
+    RecipientRole:
+      type: string
+      default: SIGNER
+      enum:
+      - CC
+      - SIGNER
+      - VIEWER
+      - APPROVER
+      - ASSISTANT
     DocumentStatus:
       type: string
       enum:
@@ -393,6 +334,65 @@ components:
       - COMPLETED
       - REJECTED
       - CANCELLED
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: integer
+        documentId:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/RecipientRole'
+        signingOrder:
+          type:
+          - integer
+          - 'null'
+        token:
+          type: string
+        signingStatus:
+          type: string
+          enum:
+          - NOT_SIGNED
+          - SIGNED
+          - REJECTED
+        readStatus:
+          type: string
+          enum:
+          - NOT_OPENED
+          - OPENED
+        sendStatus:
+          type: string
+          enum:
+          - NOT_SENT
+          - SENT
+    CreateDocumentRequest:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+        externalId:
+          type:
+          - string
+          - 'null'
+        folderId:
+          type: string
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRecipientRequest'
+        meta:
+          $ref: '#/components/schemas/DocumentMeta'
+        formValues:
+          type: object
+          additionalProperties: true
   parameters:
     DocumentId:
       name: id

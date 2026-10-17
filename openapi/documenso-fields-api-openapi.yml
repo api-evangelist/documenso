@@ -75,6 +75,19 @@ paths:
         '200':
           description: Field deleted.
 components:
+  parameters:
+    FieldId:
+      name: fieldId
+      in: path
+      required: true
+      schema:
+        type: integer
+    DocumentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
   schemas:
     CreateFieldRequest:
       type: object
@@ -103,20 +116,6 @@ components:
           type: number
         pageHeight:
           type: number
-    FieldType:
-      type: string
-      enum:
-      - SIGNATURE
-      - FREE_SIGNATURE
-      - INITIALS
-      - NAME
-      - EMAIL
-      - DATE
-      - TEXT
-      - NUMBER
-      - RADIO
-      - CHECKBOX
-      - DROPDOWN
     Field:
       type: object
       properties:
@@ -138,19 +137,20 @@ components:
           type: number
         height:
           type: number
-  parameters:
-    FieldId:
-      name: fieldId
-      in: path
-      required: true
-      schema:
-        type: integer
-    DocumentId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
+    FieldType:
+      type: string
+      enum:
+      - SIGNATURE
+      - FREE_SIGNATURE
+      - INITIALS
+      - NAME
+      - EMAIL
+      - DATE
+      - TEXT
+      - NUMBER
+      - RADIO
+      - CHECKBOX
+      - DROPDOWN
   securitySchemes:
     apiToken:
       type: apiKey
