@@ -1,4 +1,4 @@
-# Documenso (documenso)
+# Documenso
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,137 +66,124 @@
 
 Documenso is the open-source DocuSign alternative, a developer-friendly e-signature platform for sending, signing, and managing documents. Its public REST API lets you create and upload documents, add recipients and signature fields, send documents for signing, work with reusable templates, and receive webhook events across the document lifecycle. Self-hostable under AGPL.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/documenso/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/documenso/refs/heads/main/apis.yml)
+**Areas:** E-Signature · Documents · Signing · Open Source · DocuSign Alternative
 
-## Tags
+## Documenso on APIs.io
 
-- E-Signature
-- Documents
-- Signing
-- Open Source
-- DocuSign Alternative
+Everything profiled for Documenso is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/documenso/](https://apis.io/providers/documenso/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Documenso Webhooks](https://apis.io/apis/documenso/webhooks/) — Outbound webhook events covering the full document lifecycle - created, sent, opened, signed, completed, rejected, cancelled - plus template events.…
+- [Documenso Documents API](https://apis.io/apis/documenso/documenso-documents-api/) — Create, upload, send, retrieve, download, and delete documents.
+- [Documenso Fields API](https://apis.io/apis/documenso/documenso-fields-api/) — Add and configure signature and form fields on a document.
+- [Documenso Recipients API](https://apis.io/apis/documenso/documenso-recipients-api/) — Manage the recipients (signers, approvers, viewers) of a document.
+- [Documenso Templates API](https://apis.io/apis/documenso/documenso-templates-api/) — Manage reusable templates and generate documents from them.
 
-## APIs
+### Published properties
 
-### Documenso Documents API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, upload, retrieve, download, send, re-send, and delete documents. Upload returns a presigned URL for the document PDF, and documents move through a DRAFT, PENDING, COMPLETED, REJECTED, or CANCELLED lifecycle.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.documenso.com/developers/public-api](https://docs.documenso.com/developers/public-api)
-- **Base URL:** `https://app.documenso.com/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Documenso Agentic Access](https://apis.io/agentic-access/documenso/documenso-agentic-access/)
 
-- Documents
-- Signing
-- E-Signature
+#### Collections (5)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.documenso.com/developers/public-api)
-- [API Reference](https://docs.documenso.com/developers/public-api/reference)
-- [OpenAPI](openapi/documenso-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/documenso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [GitHub](https://github.com/documenso/documenso)
+- [Documenso Public API](https://apis.io/collections/documenso/open-documenso/)
+- [Documenso Public Documents API](https://apis.io/collections/documenso/open-documenso-documents-api/)
+- [Documenso Public Documents Fields API](https://apis.io/collections/documenso/open-documenso-fields-api/)
+- [Documenso Public Documents Recipients API](https://apis.io/collections/documenso/open-documenso-recipients-api/)
+- [Documenso Public Documents Templates API](https://apis.io/collections/documenso/open-documenso-templates-api/)
 
-### Documenso Recipients API
+#### Security (3)
 
-Manage the recipients of a document - create, update, and delete signers, approvers, viewers, CCs, and assistants, with configurable roles and signing order.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.documenso.com/developers/public-api](https://docs.documenso.com/developers/public-api)
-- **Base URL:** `https://app.documenso.com/api/v1`
+- [Documenso Authentication](https://apis.io/security/documenso/documenso-authentication/)
+- [Documenso Domain Security](https://apis.io/security/documenso/documenso-domain-security/)
+- [Documenso Vulnerability Disclosure](https://apis.io/security/documenso/documenso-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Recipients
-- Signers
-- Documents
+Published plans, tiers and prices.
 
-#### Properties
+- [Documenso Plans Pricing](https://apis.io/plans/documenso/documenso-plans-pricing/)
 
-- [Documentation](https://docs.documenso.com/developers/public-api)
-- [API Reference](https://docs.documenso.com/developers/public-api/reference)
-- [OpenAPI](openapi/documenso-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/documenso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [GitHub](https://github.com/documenso/documenso)
+#### Rate limits (1)
 
-### Documenso Fields API
+Published request limits.
 
-Add and configure signature and form fields on a document - signatures, initials, name, email, date, text, number, radio, checkbox, and dropdown - positioned by page and percentage coordinates and bound to a recipient.
+- [Documenso Rate Limits](https://apis.io/rate-limits/documenso/documenso-rate-limits/)
 
-- **Human URL:** [https://docs.documenso.com/developers/public-api](https://docs.documenso.com/developers/public-api)
-- **Base URL:** `https://app.documenso.com/api/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Fields
-- Signature Fields
-- Documents
+- [Documenso Finops](https://apis.io/finops/documenso/documenso-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.documenso.com/developers/public-api)
-- [API Reference](https://docs.documenso.com/developers/public-api/reference)
-- [OpenAPI](openapi/documenso-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/documenso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [GitHub](https://github.com/documenso/documenso)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Documenso Templates API
-
-Create, retrieve, and delete reusable document templates, and generate new documents from a template with overridable title, recipients, and meta options.
-
-- **Human URL:** [https://docs.documenso.com/developers/public-api](https://docs.documenso.com/developers/public-api)
-- **Base URL:** `https://app.documenso.com/api/v1`
-
-#### Tags
-
-- Templates
-- Documents
-- Automation
-
-#### Properties
-
-- [Documentation](https://docs.documenso.com/developers/public-api)
-- [API Reference](https://docs.documenso.com/developers/public-api/reference)
-- [OpenAPI](openapi/documenso-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/documenso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [GitHub](https://github.com/documenso/documenso)
-
-### Documenso Webhooks
-
-Outbound webhook events covering the full document lifecycle - created, sent, opened, signed, completed, rejected, cancelled - plus template events. Payloads are verified with a shared secret sent in the X-Documenso-Secret header.
-
-- **Human URL:** [https://docs.documenso.com/docs/developers/webhooks](https://docs.documenso.com/docs/developers/webhooks)
-- **Base URL:** `https://app.documenso.com/api/v1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.documenso.com/docs/developers/webhooks)
-- [Documentation](https://docs.documenso.com/docs/developers/webhooks/verification)
-- [GitHub](https://github.com/documenso/documenso)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/documenso)
-- [LinkedIn](https://www.linkedin.com/company/documenso)
 - [Website](https://documenso.com)
 - [Documentation](https://docs.documenso.com)
-- [Plans](plans/documenso-plans-pricing.yml)
-- [Rate Limits](rate-limits/documenso-rate-limits.yml)
-- [Fin Ops](finops/documenso-finops.yml)
+- [Blog](https://documenso.com/blog)
+- [GitHub](https://github.com/documenso)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/documenso/](https://apis.io/providers/documenso/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Documenso: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/documenso/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
